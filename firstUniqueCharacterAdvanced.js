@@ -1,5 +1,10 @@
 function findUnique(string) {
-    for (let char of string.split(""));
+    let arr = string.split("");
+    for (let char of arr) {
+        if (arr.indexOf(char) === arr.lastIndexOf(char))
+        return arr.indexOf(char);
+    };
+    return -1;
 }
 
-console.log(findUnique("hello"))
+console.log(findUnique("hehefofllo"))
