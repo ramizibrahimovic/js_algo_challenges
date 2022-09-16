@@ -1,25 +1,29 @@
 function threeSum(arr){
     arr.sort((a,b) => a-b);
-    console.log(arr)
     let result = [];
-    for (let i = 0;i< arr.length;i++) {
-        num1 = arr[i];
-        let j = i+1;
-        let k = arr.length - 1;
-        while (j < k) {
-            console.log(i,j,k);
-            console.log(arr[i],arr[j],arr[k])
-            if (arr[i]+arr[j]+arr[k] === 0) {
-                result.push([arr[i],arr[j],arr[k]]);
+    for (let i = 0;i< arr.length-2;i++) {
+        let left = i+1;
+        let right = arr.length - 1;
+        if (i > 0 && arr[i] === arr[i-1]) continue;
+        while (left < right) {
+            let total = arr[i]+arr[left]+arr[right];
+            if (total === 0) {
+                result.push([arr[i],arr[left],arr[right]]);
+                while (left < right && arr[right] === arr[right -1]) {
+                    right--;
+                }
+                while (left < right && arr[left] === arr[left + 1]) {
+                    left++;
+                }
+                right--;
+                left++;
             }
-            else if (arr[i]+arr[j]+arr[k] < 0) {
-                j++
+            else if (total > 0) {
+                right--;
             }
             else {
-                k--
+                left++;
             }
-            j++;
-            console.log(i,j,k)
         }
     }
     return result;
